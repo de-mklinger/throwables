@@ -31,7 +31,7 @@ public class Throwables {
 	/**
 	 * Get the stack trace of the given Throwable as string.
 	 * @param e The throwable
-	 * @return The stack strace as string
+	 * @return The stack trace as string
 	 */
 	public static String stackTraceToString(final Throwable e) {
 		final StringWriter sw = new StringWriter();
@@ -42,7 +42,7 @@ public class Throwables {
 	}
 
 	/**
-	 * Find the first occurency of the given error type in the cause chain.
+	 * Find the first occurrence of the given error type in the cause chain.
 	 * <p>
 	 * If {@code e} is of type {@code errorType}, return an Optional containing e.
 	 * Otherwise traverse the causes until a cause of type {@code errorType} is
@@ -55,7 +55,7 @@ public class Throwables {
 	 * @return An Optional containing the first occurrence of the given type in the
 	 *         cause chain, <code>null</code> if no such element exists
 	 */
-	public static <T extends Throwable> Optional<T> firstCause(final Throwable e, final Class<T> errorType) {
+	public static <T> Optional<T> firstCause(final Throwable e, final Class<T> errorType) {
 		if (e == null) {
 			return Optional.empty();
 		}
@@ -74,7 +74,7 @@ public class Throwables {
 	 * @return <code>true</code> if the given exception is of the given error type
 	 *         or there is any occurrence of the given error type in the cause chain
 	 */
-	public static boolean hasCause(final Throwable e, final Class<? extends Throwable> errorType) {
+	public static boolean hasCause(final Throwable e, final Class<?> errorType) {
 		return firstCause(e, errorType).isPresent();
 	}
 }
